@@ -1,6 +1,8 @@
-package com.secuirty.demo.config;
+package com.secuirty.demo.config.security;
 
 
+import com.secuirty.demo.config.jwt.JwtAuthenticationEntryPoint;
+import com.secuirty.demo.config.jwt.JwtAuthenticationFilter;
 import com.secuirty.demo.service.implement.userDetailServiceimpl;
 
 import java.util.Arrays;
