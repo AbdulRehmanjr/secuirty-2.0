@@ -52,10 +52,10 @@ public class authenticateController {
         log.info("/POST  generate-token");
             try {
                     authenticate(request.getUserName(), request.getUserPassword());
-                log.info("Authentication {Token class } "+request.getUserName());
+                // log.info("Authentication {Token class } "+request.getUserName());
             } catch (Exception e) {
                     log.error("User not found exception");
-                    return ResponseEntity.badRequest().body(401);
+                    return ResponseEntity.badRequest().body(e.getMessage());
             }
             // authentication successful s
          UserDetails user =  this.userDetailsService.loadUserByUsername(request.getUserName());
@@ -71,13 +71,13 @@ public class authenticateController {
             
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            log.info("Authentication {Authentication manager} "+username);
+            // log.info("Authentication {Authentication manager} "+username);
         } catch (DisabledException e) {
-            log.error("USER DISABLED  {Authenticate Controller} "+e.getMessage() );
+            // log.error("USER DISABLED  {Authenticate Controller} "+e.getMessage() );
             throw new Exception("USER DISABLED");
         }
         catch(BadCredentialsException e){
-            log.error("INVALID CREDENTIALS {Authenticate Controller} "+e.getMessage() );
+            // log.error("INVALID CREDENTIALS {Authenticate Controller} "+e.getMessage() );
             throw new Exception("INVALID CREDENTIALS");
         }
 
