@@ -47,6 +47,14 @@ public class roleServiceimpl implements roleService {
         return this.roleRepo.findAll();
     }
 
+    @Override
+    public role updateRole(role Role) {
+        
+        role r = this.roleRepo.findById(Role.getRoleId()).get();
+        r.setRoleName(Role.getRoleName());
+        return this.roleRepo.save(r);
+    }
+
 
     
 }

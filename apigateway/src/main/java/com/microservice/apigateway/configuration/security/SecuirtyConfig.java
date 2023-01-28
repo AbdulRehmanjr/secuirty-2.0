@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,8 +52,9 @@ public class SecuirtyConfig{
         .csrf().disable()
         .cors()
         .and()
+        .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/v1/hotel/**").permitAll())
         .securityMatcher("/api/v1/ratings/all")                                   
-		.authorizeHttpRequests(authorize -> authorize.anyRequest().hasRole("ADMIN"))
+		.authorizeHttpRequests(authorize -> authorize.anyRequest().hasAuthority("ADMIN"))
         .securityMatcher("/api/v1/users/**")
         .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
         // .authorizeRequests(authorize -> authorize
@@ -69,8 +71,7 @@ public class SecuirtyConfig{
         // .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-
+    
 }    
 
         

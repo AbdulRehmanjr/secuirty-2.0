@@ -1,4 +1,4 @@
-package com.secuirty.demo.config.jwt;
+package com.microservice.apigateway.configuration.Jwt;
 
 import java.io.IOException;
 
@@ -13,7 +13,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.secuirty.demo.service.implement.userDetailServiceimpl;
+import com.microservice.apigateway.Api.UserDetail;
+
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     private Logger log = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     @Autowired
-    private userDetailServiceimpl userDetails;
+    private UserDetail userDetails;
     @Autowired
     private jwtUtils jwtUtil;
 
@@ -60,7 +61,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
         // validate token
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            final UserDetails userDetail = this.userDetails.loadUserByUsername(username);
+            final UserDetails userDetail = this.userDetails.getUserDetails(username);
             // log.info("userDetails: "+userDetails.toString());
             log.info("User: "+username+" is authenticated");
             if(this.jwtUtil.validateToken(jwttoken, userDetail)){

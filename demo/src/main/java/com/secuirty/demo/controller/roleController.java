@@ -3,16 +3,22 @@ package com.secuirty.demo.controller;
 import com.secuirty.demo.model.role;
 import com.secuirty.demo.service.roleService;
 
+import javax.management.relation.Role;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @RestController
 @RequestMapping("/role")
@@ -21,7 +27,6 @@ public class roleController {
 
     @Autowired
     private roleService rService;
-
 
     @PostMapping("/add")
     public ResponseEntity<?> addUser(@RequestBody role Role) {
@@ -34,4 +39,9 @@ public class roleController {
         log.info("Getting  role from {Controller class} database with id ="+roleId);
         return ResponseEntity.ok(rService.getRole(roleId));
     }
+    @PatchMapping("/{roleId}")
+    public ResponseEntity<?> updateRole(@RequestBody role Role){
+        return ResponseEntity.ok(rService.updateRole(Role));
+    }
+    
 }

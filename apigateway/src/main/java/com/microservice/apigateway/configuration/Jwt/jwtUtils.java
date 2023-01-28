@@ -1,4 +1,4 @@
-package com.secuirty.demo.config.jwt;
+package com.microservice.apigateway.configuration.Jwt;
 
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Service
 public class jwtUtils {
     
-    private String SECRET_KEY = "secuirtyManagementwithspy101";
+    private String SECRET_KEY = "PakistanNativeBusinessHub!@(*";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

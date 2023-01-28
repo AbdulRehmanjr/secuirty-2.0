@@ -28,7 +28,8 @@ public class userServiceimpl implements userService{
     @Autowired
     private roleRepository rRepo;
 
-    private String Default_Role = "ADMIN";
+    private String USER_Role = "USER";
+    private String ADMIN_Role = "ADMIN";
     
     @Override
     public user addUser(user User) {
@@ -41,9 +42,12 @@ public class userServiceimpl implements userService{
         }
         else{
             // find the role in database and add in Set of roles 
-            role Role = this.rRepo.findByRoleName(Default_Role);
+            role Role1 = this.rRepo.findByRoleName(USER_Role);
+            role Role2 = this.rRepo.findByRoleName(ADMIN_Role);
+            log.info("{},{}",Role1.toString(),Role2.toString());
             Set<role> roles = new HashSet<>();
-            roles.add(Role);
+            roles.add(Role1);
+            roles.add(Role2);
             User.setRoles(roles);
             User.setUserPassword(encoder.encode(User.getUserPassword()));
             searchUser = this.userRepo.save(User);

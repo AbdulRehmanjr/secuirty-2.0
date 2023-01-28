@@ -13,13 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-
-
-
-
-
-
-
 @Entity
 @Table(name = "USERTABLE")
 public class user  {
@@ -30,9 +23,6 @@ public class user  {
     private String fullName;
     private String userName;
     private String userPassword;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "roleId")
     private Set<role> roles = new HashSet<>();
 
 

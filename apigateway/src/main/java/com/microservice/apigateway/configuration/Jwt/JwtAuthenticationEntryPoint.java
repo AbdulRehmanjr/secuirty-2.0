@@ -1,4 +1,4 @@
-package com.secuirty.demo.config.jwt;
+package com.microservice.apigateway.configuration.Jwt;
 
 import java.io.IOException;
 

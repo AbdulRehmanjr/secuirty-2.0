@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.secuirty.demo.config.jwtUtils;
+import com.secuirty.demo.config.jwt.jwtUtils;
 import com.secuirty.demo.model.JwtRequest;
 import com.secuirty.demo.model.JwtResponse;
 import com.secuirty.demo.service.implement.userDetailServiceimpl;
